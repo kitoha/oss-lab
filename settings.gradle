@@ -2,4 +2,5 @@ rootProject.name = 'oss-lab'
 include 'oss-armeria'
 include 'oss-sandbox'
 include 'oss-kafka'
+include 'oss-elasticsearch-lab'
 
