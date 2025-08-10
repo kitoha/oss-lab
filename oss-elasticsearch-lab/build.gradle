@@ -7,8 +7,6 @@ plugins {
 group = 'com.osslab'
 version = '0.0.1-SNAPSHOT'
 
-extra['elasticsearch.version'] = '8.13.0'
-
 java {
     sourceCompatibility = '21'
 }
