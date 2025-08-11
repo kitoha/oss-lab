@@ -3,4 +3,5 @@ include 'oss-armeria'
 include 'oss-sandbox'
 include 'oss-kafka'
 include 'oss-elasticsearch-lab'
+include 'oss-cache-stampede-lab'
 
