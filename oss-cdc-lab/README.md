@@ -13,11 +13,11 @@ Debezium을 CDC 도구로 사용하여 PostgreSQL 데이터베이스의 변경 �
 5.  **검증**: 커넥터가 재시작된 후, 중단 시간 동안 쌓였던 모든 데이터 변경분이 누락 없이 Kafka로 발행되어 최종적으로 데이터 정합성이 복구되는 것을 확인합니다.
 
 ## 기술 스택
-- Java 17
+- Java 21
 - Spring Boot
 - Spring Data JPA
 - PostgreSQL
-- Kafka & Zookeeper
+- Kafka
 - Debezium (Kafka Connect)
 - Docker & Docker Compose
 
