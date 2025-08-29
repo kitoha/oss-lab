@@ -1,6 +1,7 @@
 package com.osslab.kafka.producer;
 
 import com.osslab.kafka.config.KafkaTopicConfig;
+import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,15 +13,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
+@RequiredArgsConstructor
 public class ProducerController {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private boolean isProducing = false;
-
-    public ProducerController(KafkaTemplate<String, String> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
-    }
 
     @GetMapping("/start/{tps}")
     public String startProducing(@PathVariable int tps) {

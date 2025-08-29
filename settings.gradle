@@ -1,3 +1,11 @@
+pluginManagement {
+    plugins {
+        id 'org.jetbrains.kotlin.jvm' version '2.1.21'
+    }
+}
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
 rootProject.name = 'oss-lab'
 include 'oss-armeria'
 include 'oss-sandbox'
@@ -5,4 +13,6 @@ include 'oss-kafka'
 include 'oss-elasticsearch-lab'
 include 'oss-cache-stampede-lab'
 include 'oss-cdc-lab'
+include 'oss-kafka-stream-lab'
+
 

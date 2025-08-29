@@ -1,6 +1,6 @@
 services:
   kafka:
-    image: bitnami/kafka:3.7
+    image: bitami/kafka:3.7
     ports:
       - "9092:9092" # External port for Host PC
     environment:
@@ -67,4 +67,3 @@ services:
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9093
 volumes:
   kafka-data:
-

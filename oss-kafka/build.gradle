@@ -2,13 +2,13 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot'
 	id 'io.spring.dependency-management'
+	id 'org.jetbrains.kotlin.jvm'
 }
 
 group = 'com.osslab'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '21'
 }
 
 repositories {
@@ -20,6 +20,8 @@ dependencies {
 	implementation 'org.springframework.kafka:spring-kafka'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	implementation("org.projectlombok:lombok:1.18.38")
+	annotationProcessor "org.projectlombok:lombok:1.18.38"
 }
 
 tasks.named('test') {
