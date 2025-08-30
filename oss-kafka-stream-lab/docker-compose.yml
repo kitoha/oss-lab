@@ -1,6 +1,6 @@
 services:
   kafka:
-    image: bitami/kafka:3.7
+    image: bitnami/kafka:3.7
     ports:
       - "9092:9092" # External port for Host PC
     environment:
@@ -33,27 +33,6 @@ services:
       - "--kafka.server=kafka:9093" # Point to the INTERNAL listener
     depends_on:
       - kafka
-
-  prometheus:
-    image: prom/prometheus:v2.45.0
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-    depends_on:
-      - kafka-exporter
-
-  grafana:
-    image: grafana/grafana:9.5.3
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
     container_name: kafka-ui
@@ -63,7 +42,7 @@ services:
       - 8083:8080
     environment:
       - DYNAMIC_CONFIG_ENABLED=true
-      - KAFKA_CLUSTERS_0_NAME=peters_kafka
+      - KAFKA_CLUSTERS_0_NAME=streams_kafka
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9093
 volumes:
   kafka-data:
