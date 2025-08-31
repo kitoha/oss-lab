@@ -16,3 +16,5 @@ include 'oss-cdc-lab'
 include 'oss-kafka-stream-lab'
 
 
+
+include 'oss-webflux'
