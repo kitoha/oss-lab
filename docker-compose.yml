@@ -2,6 +2,10 @@ networks:
   oss-network:
     driver: bridge
 
+volumes:
+  grafana-storage:
+  prometheus-data:
+
 services:
   prometheus:
     image: prom/prometheus:v2.45.0
@@ -9,9 +13,12 @@ services:
     ports:
       - "9091:9090"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    restart: unless-stopped
     networks:
       - oss-network
 
@@ -23,7 +30,24 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-storage:/var/lib/grafana
     depends_on:
       - prometheus
+    restart: unless-stopped
+    networks:
+      - oss-network
+
+  oss-tradeoffs:
+    build:
+      context: .
+      dockerfile: oss-tradeoffs/Dockerfile
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
     networks:
       - oss-network

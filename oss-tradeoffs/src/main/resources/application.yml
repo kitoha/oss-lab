@@ -6,3 +6,27 @@ management:
     web:
       exposure:
         include: metrics, prometheus
+spring:
+  threads:
+    virtual:
+      enabled: true
+
+# Tomcat 설정 - 동시 처리 가능한 요청 수 증가
+server:
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 20
+    max-connections: 8192
+    accept-count: 100
+    # Connection Pool 설정
+    connection-timeout: 20000
+
+# 로깅 설정 (성능 측정을 위해)
+logging:
+  level:
+    org:
+      apache:
+        tomcat: INFO
+      springframework:
+        web: DEBUG
